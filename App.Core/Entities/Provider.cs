@@ -1,6 +1,6 @@
 ﻿namespace App.Core.Entities
 {
-    public class Provider : BaseCollection
+    public class Provider : Document
     {
         // Provider Information
         public string? CompanyName { get; set; }
