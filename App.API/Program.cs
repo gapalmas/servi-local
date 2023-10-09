@@ -6,8 +6,8 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services
-    .AddApplication()
     .AddInfrastructure()
+    .AddApplication()
     .AddDependencyInjection(configuration);
 
 builder.Services.AddControllers();

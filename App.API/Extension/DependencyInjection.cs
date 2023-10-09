@@ -1,6 +1,6 @@
 ﻿using App.Core.AutoMapper;
-using App.Core.Interfaces;
-using App.Infrastructure.Data;
+using App.Core.Entities;
+using App.Core.Services;
 using AutoMapper;
 using FluentValidation;
 
@@ -23,7 +23,7 @@ namespace App.API.Extension
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMap();
-            services.ServiceDependencyInjection();
+            services.ServiceDependencyInjection(configuration);
 
             return services;
         }
@@ -41,9 +41,9 @@ namespace App.API.Extension
             return services;
         }
 
-        private static IServiceCollection ServiceDependencyInjection(this IServiceCollection services)
+        private static IServiceCollection ServiceDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            services.AddScoped<OperationService<Provider>>();
 
             return services;
         }
