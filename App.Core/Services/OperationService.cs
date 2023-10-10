@@ -13,7 +13,7 @@ namespace App.Core.Services
 
         public async void Add(T request)
         {
-            await _repository.AddAsync(request);
+            await _repository.InsertOneAsync(request);
         }
 
         public Task CreateEntityAsync(T entity)

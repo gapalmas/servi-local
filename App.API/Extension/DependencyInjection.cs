@@ -20,10 +20,10 @@ namespace App.API.Extension
             return services;
         }
 
-        public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
             services.AddAutoMap();
-            services.ServiceDependencyInjection(configuration);
+            services.ServiceDependencyInjection();
 
             return services;
         }
@@ -41,7 +41,7 @@ namespace App.API.Extension
             return services;
         }
 
-        private static IServiceCollection ServiceDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection ServiceDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<OperationService<Provider>>();
 

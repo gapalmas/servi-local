@@ -24,24 +24,24 @@ namespace App.Infrastructure.Data
             return await _collection.Find(_ => true).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> FindOneAsync(Expression<Func<T, bool>> predicate)
         {
             return await _collection.Find(predicate).ToListAsync();
         }
 
-        public async Task AddAsync(T entity)
+        public T FindOne(Expression<Func<T, bool>> filterExpression)
+        {
+            return _collection.Find(filterExpression).FirstOrDefault();
+        }
+
+        public async Task InsertOneAsync(T entity)
         {
             await _collection.InsertOneAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public void InsertOne(T entity)
         {
-
-        }
-
-        public async Task DeleteAsync(T entity)
-        {
-
+            _collection.InsertOne(entity);
         }
     }
 }

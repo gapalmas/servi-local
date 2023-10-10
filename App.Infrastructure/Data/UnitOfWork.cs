@@ -12,9 +12,9 @@ namespace App.Infrastructure.Data
             this.mongoDatabase = mongoDatabase;
         }
 
-        public async Task<bool> SaveChangesAsync()
+        public bool SaveChangesAsync()
         {
-            return true;
+            return true;           
         }
 
         //public void Dispose()
