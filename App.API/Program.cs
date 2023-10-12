@@ -1,14 +1,18 @@
 using App.API.Extension;
 using App.Infrastructure.Extension;
 using Serilog;
-using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog((hostContext, services, config) =>
-{
-    config.WriteTo.MongoDB(Environment.GetEnvironmentVariable("Logs"), "logs", LogEventLevel.Error);
-});
+//using environment variable
+//builder.Host.UseSerilog((hostContext, services, config) =>
+//{
+//    config.WriteTo.MongoDB(Environment.GetEnvironmentVariable("Logs"), "logs", LogEventLevel.Error);
+//});
+
+builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console()
+        .ReadFrom.Configuration(ctx.Configuration));
 
 // Add services to the container.
 builder.Services
