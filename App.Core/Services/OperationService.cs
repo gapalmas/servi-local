@@ -11,49 +11,14 @@ namespace App.Core.Services
             _repository = repository;
         }
 
-        public async void Add(T request)
+        public async void InsertOneAsync(T request)
         {
             await _repository.InsertOneAsync(request);
         }
 
-        public Task CreateEntityAsync(T entity)
+        public async Task GetAllAsync()
         {
-            throw new NotImplementedException();
+            await _repository.GetAllAsync();
         }
-
-        public Task DeleteEntityAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<T>> FindEntitiesAsync(string searchTerm)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<T>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateEntityAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public void Add(T request)
-        //{
-        //    mongoRepository.InsertOne(request);
-        //}
-
-        //public async Task<Provider> GetProductByIdAsync(ObjectId id)
-        //{
-        //    return await _providerRepository.GetByIdAsync(id);
-        //}
     }
 }

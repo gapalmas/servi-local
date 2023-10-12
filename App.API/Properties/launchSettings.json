@@ -6,7 +6,8 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MongoDb": "mongodb+srv://devgapalmas:qFGm7xrPeIHdn2RL@gapalmas.hvxqdrf.mongodb.net/?retryWrites=true&w=majority"
+        "MongoDb": "mongodb+srv://devgapalmas:qFGm7xrPeIHdn2RL@gapalmas.hvxqdrf.mongodb.net/?retryWrites=true&w=majority",
+        "Logs": "mongodb+srv://devgapalmas:qFGm7xrPeIHdn2RL@gapalmas.hvxqdrf.mongodb.net/srv-logs?retryWrites=true&w=majority"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7216;http://localhost:5269"

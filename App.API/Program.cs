@@ -1,8 +1,14 @@
 using App.API.Extension;
 using App.Infrastructure.Extension;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
+
+builder.Host.UseSerilog((hostContext, services, config) =>
+{
+    config.WriteTo.MongoDB(Environment.GetEnvironmentVariable("Logs"), "logs", LogEventLevel.Error);
+});
 
 // Add services to the container.
 builder.Services
