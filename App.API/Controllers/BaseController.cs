@@ -1,4 +1,5 @@
 ﻿using App.Core.Entities;
+using App.Core.Interfaces;
 using App.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,11 @@ namespace App.API.Controllers
 {
     public class BaseController : ControllerBase
     {
-        protected readonly OperationService<Provider> operationServiceProvider;
+        protected readonly IServiceFactory _serviceFactory;
 
-        public BaseController(OperationService<Provider> operationServiceProvider)
+        public BaseController(IServiceFactory serviceFactory)
         {
-            this.operationServiceProvider = operationServiceProvider;
+            _serviceFactory = serviceFactory;
         }
     }
 }

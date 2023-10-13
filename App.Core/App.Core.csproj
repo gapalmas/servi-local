@@ -12,4 +12,10 @@
     <PackageReference Include="MongoDB.Bson" Version="2.21.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\Request\" />
+    <Folder Include="Dtos\Response\" />
+    <Folder Include="Helpers\Constants\" />
+  </ItemGroup>
+
 </Project>

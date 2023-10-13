@@ -3,6 +3,7 @@ using App.Infrastructure.Extension;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 //using environment variable
 //builder.Host.UseSerilog((hostContext, services, config) =>
@@ -18,7 +19,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
 builder.Services
     .AddInfrastructure()
     .AddApplication()
-    .AddDependencyInjection();
+    .AddDependencyInjection(configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -35,6 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

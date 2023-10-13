@@ -1,17 +1,18 @@
 ﻿using App.Core.Entities;
+using App.Core.Interfaces;
 using App.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace App.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ProviderController : BaseController
     {
-        public ProviderController(OperationService<Provider> operationServiceProvider) : base(operationServiceProvider)
-        {
-        }
+        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) {}
 
         [HttpPost]
         public ActionResult Add([FromBody] Provider provider)
@@ -19,8 +20,8 @@ namespace App.API.Controllers
             try
             {
                 Log.Information("This is information");
-               
-                operationServiceProvider.InsertOneAsync(provider);
+
+                _serviceFactory.OperationServiceProvider.InsertOneAsync(provider);
                 
                 Log.Error("This is error");
                 return Ok();
@@ -38,7 +39,7 @@ namespace App.API.Controllers
             Log.Information("Este es un mensaje de información");
             try
             {
-                var response = operationServiceProvider.GetAllAsync();
+                var response = _serviceFactory.OperationServiceProvider.GetAllAsync();
                 return Ok(response);
             }
             catch (Exception)
