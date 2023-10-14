@@ -35,7 +35,7 @@ namespace App.API.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            Log.Information("Este es un mensaje de información");
+            Log.Information("This is information");
             try
             {
                 var response = _serviceFactory.OperationServiceProvider.GetAllAsync();
