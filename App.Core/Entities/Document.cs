@@ -8,5 +8,6 @@ namespace App.Core.Entities
         public ObjectId Id { get; set; }
 
         public DateTime CreatedAt => Id.CreationTime;
+        public static DateTime ModifiedAt => DateTime.UtcNow;
     }
 }

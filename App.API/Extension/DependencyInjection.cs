@@ -56,8 +56,7 @@ namespace App.API.Extension
 
         private static IServiceCollection AddServiceAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var secretKey = configuration.GetSection("AppSettings:Token").Value;
-            var keyBytes = Encoding.UTF8.GetBytes(secretKey);
+            var keyBytes = Encoding.UTF8.GetBytes(configuration["AppSettings:Token"] ?? "");
 
             services.AddAuthentication(config =>
             {

@@ -1,6 +1,4 @@
-﻿using App.Core.Entities;
-using App.Core.Interfaces;
-using App.Core.Services;
+﻿using App.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.API.Controllers

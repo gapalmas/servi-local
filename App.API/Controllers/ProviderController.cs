@@ -1,6 +1,5 @@
 ﻿using App.Core.Entities;
 using App.Core.Interfaces;
-using App.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -12,7 +11,7 @@ namespace App.API.Controllers
     [ApiController]
     public class ProviderController : BaseController
     {
-        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) {}
+        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) { }
 
         [HttpPost]
         public ActionResult Add([FromBody] Provider provider)
@@ -22,7 +21,7 @@ namespace App.API.Controllers
                 Log.Information("This is information");
 
                 _serviceFactory.OperationServiceProvider.InsertOneAsync(provider);
-                
+
                 Log.Error("This is error");
                 return Ok();
             }

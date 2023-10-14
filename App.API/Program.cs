@@ -5,12 +5,6 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-//using environment variable
-//builder.Host.UseSerilog((hostContext, services, config) =>
-//{
-//    config.WriteTo.MongoDB(Environment.GetEnvironmentVariable("Logs"), "logs", LogEventLevel.Error);
-//});
-
 builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console()
         .ReadFrom.Configuration(ctx.Configuration));
