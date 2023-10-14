@@ -14,6 +14,7 @@ namespace App.Infrastructure.Extension
             services.AddSingleton<IMongoDatabase>(_ => new MongoClient(db).GetDatabase("srv-local"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IMongoRepository<Provider>), typeof(MongoRepository<Provider>));
+            services.AddScoped(typeof(IMongoRepository<User>), typeof(MongoRepository<User>));
 
             return services;
         }

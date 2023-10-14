@@ -50,6 +50,7 @@ namespace App.API.Extension
         {
             services.AddScoped<IServiceFactory, ServiceFactory>();
             services.AddScoped<IOperationService<Provider>, OperationService<Provider>>();
+            services.AddScoped<IOperationService<User>, OperationService<User>>();
 
             return services;
         }
