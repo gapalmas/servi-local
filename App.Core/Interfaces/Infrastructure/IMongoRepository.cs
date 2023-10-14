@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace App.Core.Interfaces
+namespace App.Core.Interfaces.Infrastructure
 {
     public interface IMongoRepository<T> where T : class
     {

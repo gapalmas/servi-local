@@ -1,7 +1,6 @@
-﻿using App.Core.Entities;
-using App.Core.Interfaces;
+﻿using App.Core.Dto.Request.User;
+using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace App.API.Controllers
 {
@@ -9,18 +8,17 @@ namespace App.API.Controllers
     [ApiController]
     public class UserController : BaseController
     {
-        public UserController(IServiceFactory serviceFactory) : base(serviceFactory) { }
-
+        public UserController(IUserService userService) : base(userService) { }
         [HttpPost]
-        public ActionResult Add([FromBody] User user )
+        public ActionResult Add([FromBody] UserRequestDto userRequestDto)
         {
             try
             {
-                Log.Information("This is information");
+                //Log.Information("This is information");
 
-                _serviceFactory.OperationServiceUser.InsertOneAsync(user);
+                userService.Create(userRequestDto);
 
-                Log.Error("This is error");
+                //Log.Error("This is error");
                 return Ok();
             }
             catch (Exception)

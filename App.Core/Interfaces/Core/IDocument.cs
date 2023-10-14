@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace App.Core.Interfaces
+namespace App.Core.Interfaces.Core
 {
     public interface IDocument
     {
@@ -10,5 +10,6 @@ namespace App.Core.Interfaces
         ObjectId Id { get; set; }
 
         DateTime CreatedAt { get; }
+        DateTime ModifiedAt { get; }
     }
 }

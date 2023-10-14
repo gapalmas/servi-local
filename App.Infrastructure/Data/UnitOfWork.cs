@@ -1,4 +1,4 @@
-﻿using App.Core.Interfaces;
+﻿using App.Core.Interfaces.Infrastructure;
 
 namespace App.Infrastructure.Data
 {

@@ -1,5 +1,5 @@
 ﻿using App.Core.Entities;
-using App.Core.Interfaces;
+using App.Core.Interfaces.Infrastructure;
 using App.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;

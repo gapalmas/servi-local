@@ -1,6 +1,6 @@
 ﻿namespace App.API.Helpers.Constants
 {
-    public class CommonConst
+    public class CommonConstants
     {
         public const string secretKey = "";
     }

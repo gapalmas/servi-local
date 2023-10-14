@@ -1,6 +1,7 @@
 ﻿using App.Core.AutoMapper;
 using App.Core.Entities;
-using App.Core.Interfaces;
+using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Services;
 using App.Core.Services;
 using AutoMapper;
 using FluentValidation;
@@ -51,6 +52,8 @@ namespace App.API.Extension
             services.AddScoped<IServiceFactory, ServiceFactory>();
             services.AddScoped<IOperationService<Provider>, OperationService<Provider>>();
             services.AddScoped<IOperationService<User>, OperationService<User>>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProviderService, ProviderService>();
 
             return services;
         }

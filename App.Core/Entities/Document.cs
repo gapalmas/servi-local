@@ -1,4 +1,4 @@
-﻿using App.Core.Interfaces;
+﻿using App.Core.Interfaces.Core;
 using MongoDB.Bson;
 
 namespace App.Core.Entities
@@ -8,6 +8,6 @@ namespace App.Core.Entities
         public ObjectId Id { get; set; }
 
         public DateTime CreatedAt => Id.CreationTime;
-        public static DateTime ModifiedAt => DateTime.UtcNow;
+        public DateTime ModifiedAt => DateTime.UtcNow;
     }
 }

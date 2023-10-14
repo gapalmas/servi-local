@@ -1,5 +1,7 @@
-﻿using App.Core.Entities;
-using App.Core.Interfaces;
+﻿using App.Core.Dto.Request.Provider;
+using App.Core.Entities;
+using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -7,20 +9,22 @@ using Serilog;
 namespace App.API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class ProviderController : BaseController
     {
-        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) { }
+        public ProviderController(IProviderService providerService) : base(providerService)
+        {
+        }
 
         [HttpPost]
-        public ActionResult Add([FromBody] Provider provider)
+        public ActionResult Add([FromBody] ProviderRequestDto providerRequestDto)
         {
             try
             {
                 Log.Information("This is information");
 
-                _serviceFactory.OperationServiceProvider.InsertOneAsync(provider);
+                providerService.Create(providerRequestDto);
 
                 Log.Error("This is error");
                 return Ok();
@@ -32,20 +36,20 @@ namespace App.API.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Get()
-        {
-            Log.Information("This is information");
-            try
-            {
-                var response = _serviceFactory.OperationServiceProvider.GetAllAsync();
-                return Ok(response);
-            }
-            catch (Exception)
-            {
+        //[HttpGet]
+        //public ActionResult Get()
+        //{
+        //    Log.Information("This is information");
+        //    try
+        //    {
+        //        var response = _serviceFactory.OperationServiceProvider.GetAllAsync();
+        //        return Ok(response);
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
     }
 }

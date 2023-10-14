@@ -1,4 +1,5 @@
-﻿using App.Core.Interfaces;
+﻿using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Infrastructure;
 
 namespace App.Core.Services
 {
