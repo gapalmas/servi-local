@@ -13,5 +13,9 @@ namespace App.Core.Interfaces.Infrastructure
         void InsertOne(T document);
         void ReplaceOne(T document);
         Task ReplaceOneAsync(T document);
+        T FindById(string id);
+        Task<T> FindByIdAsync(string id);
+        void InsertMany(ICollection<T> documents);
+        Task InsertManyAsync(ICollection<T> documents);
     }
 }

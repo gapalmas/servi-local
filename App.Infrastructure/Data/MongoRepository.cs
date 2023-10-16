@@ -1,5 +1,6 @@
 ﻿using App.Core.Interfaces.Core;
 using App.Core.Interfaces.Infrastructure;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
@@ -12,6 +13,23 @@ namespace App.Infrastructure.Data
         public MongoRepository(IMongoDatabase database)
         {
             _collection = database.GetCollection<T>(typeof(T).Name);
+        }
+
+        public virtual T FindById(string id)
+        {
+            var objectId = new ObjectId(id);
+            var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+            return _collection.Find(filter).SingleOrDefault();
+        }
+
+        public virtual Task<T> FindByIdAsync(string id)
+        {
+            return Task.Run(() =>
+            {
+                var objectId = new ObjectId(id);
+                var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+                return _collection.Find(filter).SingleOrDefaultAsync();
+            });
         }
 
         public async Task<T> GetByIdAsync(Guid id)
@@ -43,6 +61,17 @@ namespace App.Infrastructure.Data
         public void InsertOne(T document)
         {
             _collection.InsertOne(document);
+        }
+
+        public void InsertMany(ICollection<T> documents)
+        {
+            _collection.InsertMany(documents);
+        }
+
+
+        public virtual async Task InsertManyAsync(ICollection<T> documents)
+        {
+            await _collection.InsertManyAsync(documents);
         }
 
         public void ReplaceOne(T document)
