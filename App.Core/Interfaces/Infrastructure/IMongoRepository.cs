@@ -17,5 +17,11 @@ namespace App.Core.Interfaces.Infrastructure
         Task<T> FindByIdAsync(string id);
         void InsertMany(ICollection<T> documents);
         Task InsertManyAsync(ICollection<T> documents);
+        void DeleteOne(Expression<Func<T, bool>> filterExpression);
+        Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression);
+        void DeleteById(string id);
+        Task DeleteByIdAsync(string id);
+        void DeleteMany(Expression<Func<T, bool>> filterExpression);
+        Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);
     }
 }

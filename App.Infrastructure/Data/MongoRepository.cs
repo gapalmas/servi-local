@@ -85,5 +85,42 @@ namespace App.Infrastructure.Data
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, document.Id);
             await _collection.FindOneAndReplaceAsync(filter, document);
         }
+
+        public void DeleteOne(Expression<Func<T, bool>> filterExpression)
+        {
+            _collection.FindOneAndDelete(filterExpression);
+        }
+
+        public Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression)
+        {
+            return Task.Run(() => _collection.FindOneAndDeleteAsync(filterExpression));
+        }
+
+        public void DeleteById(string id)
+        {
+            var objectId = new ObjectId(id);
+            var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+            _collection.FindOneAndDelete(filter);
+        }
+
+        public Task DeleteByIdAsync(string id)
+        {
+            return Task.Run(() =>
+            {
+                var objectId = new ObjectId(id);
+                var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+                _collection.FindOneAndDeleteAsync(filter);
+            });
+        }
+
+        public void DeleteMany(Expression<Func<T, bool>> filterExpression)
+        {
+            _collection.DeleteMany(filterExpression);
+        }
+
+        public Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression)
+        {
+            return Task.Run(() => _collection.DeleteManyAsync(filterExpression));
+        }
     }
 }
