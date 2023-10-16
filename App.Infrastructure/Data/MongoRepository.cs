@@ -1,10 +1,11 @@
-﻿using App.Core.Interfaces.Infrastructure;
+﻿using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Infrastructure;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
 namespace App.Infrastructure.Data
 {
-    public class MongoRepository<T> : IMongoRepository<T> where T : class
+    public class MongoRepository<T> : IMongoRepository<T> where T : IDocument
     {
         private readonly IMongoCollection<T> _collection;
 
@@ -34,14 +35,26 @@ namespace App.Infrastructure.Data
             return _collection.Find(filterExpression).FirstOrDefault();
         }
 
-        public async Task InsertOneAsync(T entity)
+        public async Task InsertOneAsync(T document)
         {
-            await _collection.InsertOneAsync(entity);
+            await _collection.InsertOneAsync(document);
         }
 
-        public void InsertOne(T entity)
+        public void InsertOne(T document)
         {
-            _collection.InsertOne(entity);
+            _collection.InsertOne(document);
+        }
+
+        public void ReplaceOne(T document)
+        {
+            var filter = Builders<T>.Filter.Eq(doc => doc.Id, document.Id);
+            _collection.FindOneAndReplace(filter, document);
+        }
+
+        public virtual async Task ReplaceOneAsync(T document)
+        {
+            var filter = Builders<T>.Filter.Eq(doc => doc.Id, document.Id);
+            await _collection.FindOneAndReplaceAsync(filter, document);
         }
     }
 }

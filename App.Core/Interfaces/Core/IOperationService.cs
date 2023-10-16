@@ -2,7 +2,7 @@
 
 namespace App.Core.Interfaces.Core
 {
-    public interface IOperationService<T> where T : class
+    public interface IOperationService<T> where T : IDocument
     {
         Task GetAllAsync();
         void InsertOneAsync(T entity);

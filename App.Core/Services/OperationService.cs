@@ -3,7 +3,7 @@ using App.Core.Interfaces.Infrastructure;
 
 namespace App.Core.Services
 {
-    public class OperationService<T> : IOperationService<T> where T : class
+    public class OperationService<T> : IOperationService<T> where T : IDocument
     {
         private readonly IMongoRepository<T> _repository;
 

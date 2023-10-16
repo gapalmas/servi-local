@@ -1,14 +1,17 @@
-﻿using System.Linq.Expressions;
+﻿using App.Core.Interfaces.Core;
+using System.Linq.Expressions;
 
 namespace App.Core.Interfaces.Infrastructure
 {
-    public interface IMongoRepository<T> where T : class
+    public interface IMongoRepository<T> where T : IDocument
     {
         Task<T> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> FindOneAsync(Expression<Func<T, bool>> predicate);
         T FindOne(Expression<Func<T, bool>> filterExpression);
-        Task InsertOneAsync(T entity);
-        void InsertOne(T entity);
+        Task InsertOneAsync(T document);
+        void InsertOne(T document);
+        void ReplaceOne(T document);
+        Task ReplaceOneAsync(T document);
     }
 }
