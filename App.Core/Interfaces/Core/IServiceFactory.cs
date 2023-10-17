@@ -1,10 +1,10 @@
-﻿using App.Core.Entities;
+﻿using App.Core.Interfaces.Services;
 
 namespace App.Core.Interfaces.Core
 {
     public interface IServiceFactory
     {
-        IOperationService<Provider> OperationServiceProvider { get; }
-        IOperationService<User> OperationServiceUser { get; }
+        IProviderService ProviderService { get; }
+        IUserService UserService { get; }
     }
 }

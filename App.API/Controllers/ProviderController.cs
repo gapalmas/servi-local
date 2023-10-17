@@ -1,7 +1,7 @@
 ﻿using App.Core.Dto.Request.Provider;
-using App.Core.Entities;
 using App.Core.Interfaces.Core;
 using App.Core.Interfaces.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -9,13 +9,17 @@ using Serilog;
 namespace App.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class ProviderController : BaseController
     {
-        public ProviderController(IProviderService providerService) : base(providerService)
+        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory)
         {
         }
+
+        //public ProviderController(IProviderService providerService, IUserService userService) : base(providerService, userService)
+        //{
+        //}
 
         [HttpPost]
         public ActionResult Add([FromBody] ProviderRequestDto providerRequestDto)
@@ -24,7 +28,7 @@ namespace App.API.Controllers
             {
                 Log.Information("This is information");
 
-                providerService.Create(providerRequestDto);
+                serviceFactory.ProviderService.Create(providerRequestDto);
 
                 Log.Error("This is error");
                 return Ok();

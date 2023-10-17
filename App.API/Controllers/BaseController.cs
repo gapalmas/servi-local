@@ -1,21 +1,25 @@
-﻿using App.Core.Interfaces.Services;
+﻿using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.API.Controllers
 {
     public class BaseController : ControllerBase
     {
-        protected readonly IUserService ?userService;
-        protected readonly IProviderService ?providerService;
+        protected readonly IServiceFactory serviceFactory;
 
-        public BaseController(IProviderService providerService)
+        public BaseController(IServiceFactory serviceFactory)
         {
-            this.providerService = providerService;
+            this.serviceFactory = serviceFactory;
         }
 
-        public BaseController(IUserService userService)
-        {
-            this.userService = userService;
-        }
+        //protected readonly IUserService userService;
+        //protected readonly IProviderService providerService;
+
+        //public BaseController(IProviderService providerService, IUserService userService)
+        //{
+        //    this.providerService = providerService;
+        //    this.userService = userService;
+        //}
     }
 }

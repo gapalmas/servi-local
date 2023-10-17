@@ -8,12 +8,12 @@ namespace App.Core.Services
 {
     public class UserService : IUserService
     {
-        protected readonly IServiceFactory _serviceFactory;
+        protected readonly IManagerGenericService managerGenericService;
         public readonly IMapper mapper;
 
-        public UserService(IServiceFactory serviceFactory, IMapper mapper)
+        public UserService(IManagerGenericService managerGenericService, IMapper mapper)
         {
-            _serviceFactory = serviceFactory;
+            this.managerGenericService = managerGenericService;
             this.mapper = mapper;
         }
 
@@ -21,7 +21,7 @@ namespace App.Core.Services
         {
             if (userRequestDto != null)
             {
-                _serviceFactory.OperationServiceUser.InsertOneAsync(mapper.Map<User>(userRequestDto));
+                managerGenericService.OperationServiceUser.InsertOneAsync(mapper.Map<User>(userRequestDto));
             }
         }
     }

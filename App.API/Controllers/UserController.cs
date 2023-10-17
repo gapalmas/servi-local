@@ -1,14 +1,25 @@
 ﻿using App.Core.Dto.Request.User;
+using App.Core.Interfaces.Core;
 using App.Core.Interfaces.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class UserController : BaseController
     {
-        public UserController(IUserService userService) : base(userService) { }
+        public UserController(IServiceFactory serviceFactory) : base(serviceFactory)
+        {
+        }
+
+        //public UserController(IProviderService providerService, IUserService userService) : base(providerService, userService)
+        //{
+        //}
+
         [HttpPost]
         public ActionResult Add([FromBody] UserRequestDto userRequestDto)
         {
@@ -16,7 +27,7 @@ namespace App.API.Controllers
             {
                 //Log.Information("This is information");
 
-                userService.Create(userRequestDto);
+                serviceFactory.UserService.Create(userRequestDto);
 
                 //Log.Error("This is error");
                 return Ok();

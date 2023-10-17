@@ -3,11 +3,11 @@ using App.Core.Interfaces.Infrastructure;
 
 namespace App.Core.Services
 {
-    public class OperationService<T> : IOperationService<T> where T : IDocument
+    public class GenericService<T> : IGenericService<T> where T : IDocument
     {
         private readonly IMongoRepository<T> _repository;
 
-        public OperationService(IMongoRepository<T> repository)
+        public GenericService(IMongoRepository<T> repository)
         {
             _repository = repository;
         }
