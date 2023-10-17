@@ -6,22 +6,23 @@ namespace App.Core.Services
 {
     public class ManagerGenericService : IManagerGenericService
     {
-        protected readonly IGenericService<Provider> operationServiceProvider;
-        protected readonly IGenericService<User> operationServiceUser;
+        protected readonly IGenericService<Provider> GenericServiceProvider;
+        protected readonly IGenericService<User> GenericServiceUser;
         protected readonly IUnitOfWork unitOfWork;
         protected readonly IMongoRepository<Provider> mongoRepositoryProvider;
         protected readonly IMongoRepository<User> mongoRepositoryUser;
 
-        public ManagerGenericService(IGenericService<Provider> operationServiceProvider, IUnitOfWork unitOfWork, IMongoRepository<Provider> mongoRepositoryProvider, IGenericService<User> operationServiceUser, IMongoRepository<User> mongoRepositoryUser)
+        public ManagerGenericService(IGenericService<Provider> GenericServiceProvider, IUnitOfWork unitOfWork, IMongoRepository<Provider> mongoRepositoryProvider, IGenericService<User> GenericServiceUser, IMongoRepository<User> mongoRepositoryUser)
         {
-            this.operationServiceProvider = operationServiceProvider;
+            this.GenericServiceProvider = GenericServiceProvider;
             this.unitOfWork = unitOfWork;
             this.mongoRepositoryProvider = mongoRepositoryProvider;
-            this.operationServiceUser = operationServiceUser;
+            this.GenericServiceUser = GenericServiceUser;
             this.mongoRepositoryUser = mongoRepositoryUser;
         }
 
-        public IGenericService<Provider> OperationServiceProvider => operationServiceProvider ?? new GenericService<Provider>(mongoRepositoryProvider);
-        public IGenericService<User> OperationServiceUser => operationServiceUser ?? new GenericService<User>(mongoRepositoryUser);
+        IGenericService<Provider> IManagerGenericService.GenericServiceProvider => GenericServiceProvider ?? new GenericService<Provider>(mongoRepositoryProvider);
+
+        IGenericService<User> IManagerGenericService.GenericServiceUser => GenericServiceUser ?? new GenericService<User>(mongoRepositoryUser);
     }
 }

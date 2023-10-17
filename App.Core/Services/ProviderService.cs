@@ -21,7 +21,7 @@ namespace App.Core.Services
         {
             if(providerRequestDto != null) 
             {
-                managerGenericService.OperationServiceProvider.InsertOneAsync(mapper.Map<Provider>(providerRequestDto));
+                managerGenericService.GenericServiceProvider.InsertOneAsync(mapper.Map<Provider>(providerRequestDto));
             }
         }
     }
