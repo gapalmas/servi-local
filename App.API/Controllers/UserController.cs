@@ -1,4 +1,5 @@
 ﻿using App.Core.Dto.Request.User;
+using App.Core.Entities;
 using App.Core.Interfaces.Core;
 using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,8 +21,8 @@ namespace App.API.Controllers
         //{
         //}
 
-        [HttpPost]
-        public ActionResult Add([FromBody] UserRequestDto userRequestDto)
+        [HttpPost("register")]
+        public ActionResult Create([FromBody] UserRequestDto userRequestDto)
         {
             try
             {
@@ -31,6 +32,21 @@ namespace App.API.Controllers
 
                 //Log.Error("This is error");
                 return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost("get-user")]
+        public async Task<IActionResult> FindOne([FromBody] UserRequestDto userRequestDto)
+        {
+            try
+            {
+                var response = await serviceFactory.UserService.FindOneAsync(userRequestDto);
+                return Ok(response);
             }
             catch (Exception)
             {

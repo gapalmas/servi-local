@@ -1,5 +1,6 @@
 ﻿using App.Core.Interfaces.Core;
 using App.Core.Interfaces.Infrastructure;
+using System.Linq.Expressions;
 
 namespace App.Core.Services
 {
@@ -17,9 +18,29 @@ namespace App.Core.Services
             await _repository.InsertOneAsync(request);
         }
 
-        public async Task GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            await _repository.GetAllAsync();
+            return await _repository.GetAllAsync();
+        }
+
+        public T FindById(string id) 
+        {
+            return _repository.FindById(id);
+        }
+
+        public async void ReplaceOne(T entity)
+        {
+            await _repository.ReplaceOneAsync(entity);
+        }
+
+        public async Task<T> FindOneAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _repository.FindOneAsync(predicate);
+        }
+
+        public T FindOne(Expression<Func<T, bool>> predicate)
+        {
+            return _repository.FindOne(predicate);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace App.Core.Interfaces.Infrastructure
     {
         Task<T> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
-        Task<IEnumerable<T>> FindOneAsync(Expression<Func<T, bool>> predicate);
+        Task<T> FindOneAsync(Expression<Func<T, bool>> predicate);
         T FindOne(Expression<Func<T, bool>> filterExpression);
         Task InsertOneAsync(T document);
         void InsertOne(T document);

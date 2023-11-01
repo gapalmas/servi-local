@@ -43,9 +43,9 @@ namespace App.Infrastructure.Data
             return await _collection.Find(_ => true).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> FindOneAsync(Expression<Func<T, bool>> predicate)
+        public async Task<T> FindOneAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _collection.Find(predicate).ToListAsync();
+            return await _collection.Find(predicate).FirstOrDefaultAsync();
         }
 
         public T FindOne(Expression<Func<T, bool>> filterExpression)

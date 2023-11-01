@@ -20,11 +20,6 @@ namespace App.API.Controllers.Authentication
             this.configuration = configuration;
         }
 
-        //public LoginController(IProviderService providerService, IUserService userService, IConfiguration configuration) : base(providerService, userService)
-        //{
-        //    this.configuration = configuration;
-        //}
-
         [HttpPost]
         [Route("PostLoginDetails")]
         public ActionResult Login(string _userData = "result")
