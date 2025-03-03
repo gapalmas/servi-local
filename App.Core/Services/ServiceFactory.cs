@@ -6,22 +6,22 @@ namespace App.Core.Services
 {
     public class ServiceFactory : IServiceFactory
     {
-        protected readonly IManagerGenericService managerGenericService;
+        protected readonly IManagerService managerService;
         protected readonly IMapper mapper;
 
         protected readonly IProviderService providerService;
         protected readonly IUserService userService;
 
-        public ServiceFactory(IProviderService providerService, IUserService userService, IManagerGenericService managerGenericService, IMapper mapper)
+        public ServiceFactory(IProviderService providerService, IUserService userService, IManagerService managerService, IMapper mapper)
         {
             this.providerService = providerService;
             this.userService = userService;
-            this.managerGenericService = managerGenericService;
+            this.managerService = managerService;
             this.mapper = mapper;
         }
 
-        public IProviderService ProviderService => providerService ?? new ProviderService(managerGenericService, mapper);
+        public IProviderService ProviderService => providerService ?? new ProviderService(managerService, mapper);
 
-        public IUserService UserService => userService ?? new UserService(managerGenericService, mapper);
+        public IUserService UserService => userService ?? new UserService(managerService, mapper);
     }
 }

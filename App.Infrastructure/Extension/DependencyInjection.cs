@@ -13,8 +13,8 @@ namespace App.Infrastructure.Extension
             var db = Environment.GetEnvironmentVariable("MongoDb");
             services.AddSingleton<IMongoDatabase>(_ => new MongoClient(db).GetDatabase("srv-local"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped(typeof(IMongoRepository<Provider>), typeof(MongoRepository<Provider>));
-            services.AddScoped(typeof(IMongoRepository<User>), typeof(MongoRepository<User>));
+            services.AddScoped(typeof(IRepository<Provider>), typeof(MongoRepository<Provider>));
+            services.AddScoped(typeof(IRepository<User>), typeof(MongoRepository<User>));
 
             return services;
         }

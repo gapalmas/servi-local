@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 
 namespace App.Core.Services
 {
-    public class GenericService<T> : IGenericService<T> where T : IDocument
+    public class RepositoryService<T> : IGenericService<T> where T : IDocument
     {
-        private readonly IMongoRepository<T> _repository;
+        private readonly IRepository<T> _repository;
 
-        public GenericService(IMongoRepository<T> repository)
+        public RepositoryService(IRepository<T> repository)
         {
             _repository = repository;
         }

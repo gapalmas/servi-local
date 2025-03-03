@@ -2,7 +2,7 @@
 
 namespace App.Core.Interfaces.Core
 {
-    public interface IManagerGenericService
+    public interface IManagerService
     {
         IGenericService<Provider> GenericServiceProvider { get; }
         IGenericService<User> GenericServiceUser { get; }

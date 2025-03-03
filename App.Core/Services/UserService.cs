@@ -8,10 +8,10 @@ namespace App.Core.Services
 {
     public class UserService : IUserService
     {
-        protected readonly IManagerGenericService managerGenericService;
+        protected readonly IManagerService managerGenericService;
         public readonly IMapper mapper;
 
-        public UserService(IManagerGenericService managerGenericService, IMapper mapper)
+        public UserService(IManagerService managerGenericService, IMapper mapper)
         {
             this.managerGenericService = managerGenericService;
             this.mapper = mapper;

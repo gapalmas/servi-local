@@ -53,9 +53,9 @@ namespace App.API.Extension
 
         private static IServiceCollection ServiceDependencyInjection(this IServiceCollection services)
         {
-            services.AddScoped<IManagerGenericService, ManagerGenericService>();
-            services.AddScoped<IGenericService<Provider>, GenericService<Provider>>();
-            services.AddScoped<IGenericService<User>, GenericService<User>>();
+            services.AddScoped<IManagerService, ManagerService>();
+            services.AddScoped<IGenericService<Provider>, RepositoryService<Provider>>();
+            services.AddScoped<IGenericService<User>, RepositoryService<User>>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IServiceFactory, ServiceFactory>();

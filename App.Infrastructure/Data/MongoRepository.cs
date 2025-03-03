@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace App.Infrastructure.Data
 {
-    public class MongoRepository<T> : IMongoRepository<T> where T : IDocument
+    public class MongoRepository<T> : IRepository<T> where T : IDocument
     {
         private readonly IMongoCollection<T> _collection;
 
