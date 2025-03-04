@@ -8,12 +8,12 @@ namespace App.Core.Services
 {
     public class ProviderService : IProviderService
     {
-        protected readonly IManagerService managerGenericService;
+        protected readonly IManagerService managerService;
         public readonly IMapper mapper;
 
-        public ProviderService(IManagerService managerGenericService, IMapper mapper)
+        public ProviderService(IManagerService managerService, IMapper mapper)
         {
-            this.managerGenericService = managerGenericService;
+            this.managerService = managerService;
             this.mapper = mapper;
         }
 
@@ -21,7 +21,7 @@ namespace App.Core.Services
         {
             if(providerRequestDto != null) 
             {
-                managerGenericService.GenericServiceProvider.InsertOneAsync(mapper.Map<Provider>(providerRequestDto));
+                managerService.ServiceProvider.InsertOneAsync(mapper.Map<Provider>(providerRequestDto));
             }
         }
     }

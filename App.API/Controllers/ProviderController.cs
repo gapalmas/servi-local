@@ -13,13 +13,7 @@ namespace App.API.Controllers
     [ApiController]
     public class ProviderController : BaseController
     {
-        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory)
-        {
-        }
-
-        //public ProviderController(IProviderService providerService, IUserService userService) : base(providerService, userService)
-        //{
-        //}
+        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) {  }
 
         [HttpPost]
         public ActionResult Add([FromBody] ProviderRequestDto providerRequestDto)

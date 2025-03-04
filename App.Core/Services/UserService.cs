@@ -19,32 +19,32 @@ namespace App.Core.Services
 
         public void Create(UserRequestDto userRequestDto)
         {
-            managerGenericService.GenericServiceUser.InsertOneAsync(mapper.Map<User>(userRequestDto));
+            managerGenericService.ServiceUser.InsertOneAsync(mapper.Map<User>(userRequestDto));
         }
 
         public User GetById(string id)
         {
-            return managerGenericService.GenericServiceUser.FindById(id);
+            return managerGenericService.ServiceUser.FindById(id);
         }
 
         public async Task<IEnumerable<User>> GetAllAsync() 
         {
-            return await managerGenericService.GenericServiceUser.GetAllAsync();
+            return await managerGenericService.ServiceUser.GetAllAsync();
         }
 
         public void Update(User user)
         {
-            managerGenericService.GenericServiceUser.ReplaceOne(user);
+            managerGenericService.ServiceUser.ReplaceOne(user);
         }
 
         public User FindOne(UserRequestDto userRequestDto)
         {
-            return managerGenericService.GenericServiceUser.FindOne(user => user.Email == userRequestDto.Email && user.Password == userRequestDto.Password);
+            return managerGenericService.ServiceUser.FindOne(user => user.Email == userRequestDto.Email && user.Password == userRequestDto.Password);
         }
 
         public async Task<User> FindOneAsync(UserRequestDto userRequestDto)
         {
-            return await managerGenericService.GenericServiceUser.FindOneAsync(user => user.Email == userRequestDto.Email && user.Password == userRequestDto.Password);
+            return await managerGenericService.ServiceUser.FindOneAsync(user => user.Email == userRequestDto.Email && user.Password == userRequestDto.Password);
         }
     }
 }

@@ -6,11 +6,11 @@ using System.Linq.Expressions;
 
 namespace App.Infrastructure.Data
 {
-    public class MongoRepository<T> : IRepository<T> where T : IDocument
+    public class GenericRepository<T> : IGenericRepository<T> where T : IDocument
     {
         private readonly IMongoCollection<T> _collection;
 
-        public MongoRepository(IMongoDatabase database)
+        public GenericRepository(IMongoDatabase database)
         {
             _collection = database.GetCollection<T>(typeof(T).Name);
         }

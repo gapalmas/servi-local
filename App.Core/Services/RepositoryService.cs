@@ -6,9 +6,9 @@ namespace App.Core.Services
 {
     public class RepositoryService<T> : IGenericService<T> where T : IDocument
     {
-        private readonly IRepository<T> _repository;
+        private readonly IGenericRepository<T> _repository;
 
-        public RepositoryService(IRepository<T> repository)
+        public RepositoryService(IGenericRepository<T> repository)
         {
             _repository = repository;
         }

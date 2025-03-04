@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace App.Core.Interfaces.Infrastructure
 {
-    public interface IRepository<T> where T : IDocument
+    public interface IGenericRepository<T> where T : IDocument
     {
         Task<T> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();

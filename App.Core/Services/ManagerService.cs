@@ -9,10 +9,10 @@ namespace App.Core.Services
         protected readonly IGenericService<Provider> ServiceProvider;
         protected readonly IGenericService<User> ServiceUser;
         protected readonly IUnitOfWork unitOfWork;
-        protected readonly IRepository<Provider> RepositoryProvider;
-        protected readonly IRepository<User> RepositoryUser;
+        protected readonly IGenericRepository<Provider> RepositoryProvider;
+        protected readonly IGenericRepository<User> RepositoryUser;
 
-        public ManagerService(IGenericService<Provider> ServiceProvider, IUnitOfWork unitOfWork, IRepository<Provider> RepositoryProvider, IGenericService<User> ServiceUser, IRepository<User> RepositoryUser)
+        public ManagerService(IGenericService<Provider> ServiceProvider, IUnitOfWork unitOfWork, IGenericRepository<Provider> RepositoryProvider, IGenericService<User> ServiceUser, IGenericRepository<User> RepositoryUser)
         {
             this.ServiceProvider = ServiceProvider;
             this.unitOfWork = unitOfWork;
@@ -21,8 +21,8 @@ namespace App.Core.Services
             this.RepositoryUser = RepositoryUser;
         }
 
-        IGenericService<Provider> IManagerService.GenericServiceProvider => ServiceProvider ?? new RepositoryService<Provider>(RepositoryProvider);
+        IGenericService<Provider> IManagerService.ServiceProvider => ServiceProvider ?? new RepositoryService<Provider>(RepositoryProvider);
 
-        IGenericService<User> IManagerService.GenericServiceUser => ServiceUser ?? new RepositoryService<User>(RepositoryUser);
+        IGenericService<User> IManagerService.ServiceUser => ServiceUser ?? new RepositoryService<User>(RepositoryUser);
     }
 }
