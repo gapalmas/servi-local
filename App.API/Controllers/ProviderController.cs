@@ -11,10 +11,8 @@ namespace App.API.Controllers
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    public class ProviderController : BaseController
+    public class ProviderController(IServiceFactory serviceFactory) : BaseController(serviceFactory)
     {
-        public ProviderController(IServiceFactory serviceFactory) : base(serviceFactory) {  }
-
         [HttpPost]
         public ActionResult Add([FromBody] ProviderRequestDto providerRequestDto)
         {

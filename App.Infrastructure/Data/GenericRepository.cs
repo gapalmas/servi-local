@@ -6,14 +6,9 @@ using System.Linq.Expressions;
 
 namespace App.Infrastructure.Data
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : IDocument
+    public class GenericRepository<T>(IMongoDatabase database) : IGenericRepository<T> where T : IDocument
     {
-        private readonly IMongoCollection<T> _collection;
-
-        public GenericRepository(IMongoDatabase database)
-        {
-            _collection = database.GetCollection<T>(typeof(T).Name);
-        }
+        private readonly IMongoCollection<T> _collection = database.GetCollection<T>(typeof(T).Name);
 
         public virtual T FindById(string id)
         {

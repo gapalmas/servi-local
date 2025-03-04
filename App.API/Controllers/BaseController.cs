@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.API.Controllers
 {
-    public class BaseController : ControllerBase
+    public class BaseController(IServiceFactory serviceFactory) : ControllerBase
     {
-        protected readonly IServiceFactory serviceFactory;
-
-        public BaseController(IServiceFactory serviceFactory)
-        {
-            this.serviceFactory = serviceFactory;
-        }
+        protected readonly IServiceFactory serviceFactory = serviceFactory;
 
         //protected readonly IUserService userService;
         //protected readonly IProviderService providerService;

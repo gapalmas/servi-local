@@ -4,22 +4,13 @@ using App.Core.Interfaces.Infrastructure;
 
 namespace App.Core.Services
 {
-    public class ManagerService : IManagerService
+    public class ManagerService(IGenericService<Provider> ServiceProvider, IUnitOfWork unitOfWork, IGenericRepository<Provider> RepositoryProvider, IGenericService<User> ServiceUser, IGenericRepository<User> RepositoryUser) : IManagerService
     {
-        protected readonly IGenericService<Provider> ServiceProvider;
-        protected readonly IGenericService<User> ServiceUser;
-        protected readonly IUnitOfWork unitOfWork;
-        protected readonly IGenericRepository<Provider> RepositoryProvider;
-        protected readonly IGenericRepository<User> RepositoryUser;
-
-        public ManagerService(IGenericService<Provider> ServiceProvider, IUnitOfWork unitOfWork, IGenericRepository<Provider> RepositoryProvider, IGenericService<User> ServiceUser, IGenericRepository<User> RepositoryUser)
-        {
-            this.ServiceProvider = ServiceProvider;
-            this.unitOfWork = unitOfWork;
-            this.RepositoryProvider = RepositoryProvider;
-            this.ServiceUser = ServiceUser;
-            this.RepositoryUser = RepositoryUser;
-        }
+        protected readonly IGenericService<Provider> ServiceProvider = ServiceProvider;
+        protected readonly IGenericService<User> ServiceUser = ServiceUser;
+        protected readonly IUnitOfWork unitOfWork = unitOfWork;
+        protected readonly IGenericRepository<Provider> RepositoryProvider = RepositoryProvider;
+        protected readonly IGenericRepository<User> RepositoryUser = RepositoryUser;
 
         IGenericService<Provider> IManagerService.ServiceProvider => ServiceProvider ?? new RepositoryService<Provider>(RepositoryProvider);
 

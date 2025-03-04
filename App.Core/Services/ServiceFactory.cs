@@ -4,21 +4,13 @@ using AutoMapper;
 
 namespace App.Core.Services
 {
-    public class ServiceFactory : IServiceFactory
+    public class ServiceFactory(IProviderService providerService, IUserService userService, IManagerService managerService, IMapper mapper) : IServiceFactory
     {
-        protected readonly IManagerService managerService;
-        protected readonly IMapper mapper;
+        protected readonly IManagerService managerService = managerService;
+        protected readonly IMapper mapper = mapper;
 
-        protected readonly IProviderService providerService;
-        protected readonly IUserService userService;
-
-        public ServiceFactory(IProviderService providerService, IUserService userService, IManagerService managerService, IMapper mapper)
-        {
-            this.providerService = providerService;
-            this.userService = userService;
-            this.managerService = managerService;
-            this.mapper = mapper;
-        }
+        protected readonly IProviderService providerService = providerService;
+        protected readonly IUserService userService = userService;
 
         public IProviderService ProviderService => providerService ?? new ProviderService(managerService, mapper);
 

@@ -6,16 +6,10 @@ using AutoMapper;
 
 namespace App.Core.Services
 {
-    public class ProviderService : IProviderService
+    public class ProviderService(IManagerService managerService, IMapper mapper) : IProviderService
     {
-        protected readonly IManagerService managerService;
-        public readonly IMapper mapper;
-
-        public ProviderService(IManagerService managerService, IMapper mapper)
-        {
-            this.managerService = managerService;
-            this.mapper = mapper;
-        }
+        protected readonly IManagerService managerService = managerService;
+        public readonly IMapper mapper = mapper;
 
         public void Create(ProviderRequestDto providerRequestDto)
         {

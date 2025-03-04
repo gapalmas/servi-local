@@ -11,14 +11,9 @@ namespace App.API.Controllers.Authentication
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : BaseController
+    public class LoginController(IServiceFactory serviceFactory, IConfiguration configuration) : BaseController(serviceFactory)
     {
-        private readonly IConfiguration configuration;
-
-        public LoginController(IServiceFactory serviceFactory, IConfiguration configuration) : base(serviceFactory)
-        {
-            this.configuration = configuration;
-        }
+        private readonly IConfiguration configuration = configuration;
 
         [HttpPost]
         [Route("PostLoginDetails")]
