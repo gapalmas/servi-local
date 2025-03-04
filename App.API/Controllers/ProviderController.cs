@@ -1,6 +1,5 @@
 ﻿using App.Core.Dto.Request.Provider;
 using App.Core.Interfaces.Core;
-using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -6,14 +6,14 @@
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string PasswordSalt { get; set; } = string.Empty;
-        public List<string> Roles { get; set; } = new List<string>();
+        public List<string> Roles { get; set; } = [];
         public DateTime LastLogin { get; set; } = DateTime.MinValue;
         public bool IsLocked { get; set; } = false;
         public bool IsActive { get; set; } = true;
 
         public User()
         {
-            Roles = new List<string>();
+            Roles = [];
         }
     }
 }

@@ -8,17 +8,13 @@ namespace App.Core.Helpers.Security
         public static string EncryptPassword(string password)
         {
             var sb = new StringBuilder();
+            Encoding enc = Encoding.UTF8;
+            byte[] bytes = enc.GetBytes(password);
+            byte[] result = SHA256.HashData(bytes);
 
-            using (SHA256 hash = SHA256.Create())
+            foreach (byte b in result)
             {
-                Encoding enc = Encoding.UTF8;
-                byte[] bytes = enc.GetBytes(password);
-                byte[] result = hash.ComputeHash(bytes);
-
-                foreach (byte b in result)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
+                sb.Append(b.ToString("x2"));
             }
 
             return sb.ToString();

@@ -13,28 +13,28 @@
         public string Description { get; set; } = string.Empty;
 
         // Services Offered
-        public List<Service> Services { get; set; } = new List<Service>();
+        public List<Service> Services { get; set; } = [];
 
         // Experience and Qualifications
         public int YearsOfExperience { get; set; }
-        public List<string> Certifications { get; set; } = new List<string>();
-        public List<PreviousProject> PreviousProjects { get; set; } = new List<PreviousProject>();
-        public List<KeyPersonnel> KeyPersonnel { get; set; } = new List<KeyPersonnel>();
+        public List<string> Certifications { get; set; } = [];
+        public List<PreviousProject> PreviousProjects { get; set; } = [];
+        public List<KeyPersonnel> KeyPersonnel { get; set; } = [];
 
         // Reviews and Ratings
-        public List<Review> Reviews { get; set; } = new List<Review>();
+        public List<Review> Reviews { get; set; } = [];
 
         // Work Gallery
-        public List<ProjectImage> Gallery { get; set; } = new List<ProjectImage>();
+        public List<ProjectImage> Gallery { get; set; } = [];
 
         // Frequently Asked Questions
-        public List<FrequentlyAskedQuestion> FAQs { get; set; } = new List<FrequentlyAskedQuestion>();
+        public List<FrequentlyAskedQuestion> FAQs { get; set; } =   [];
 
         // Additional Information
         public string CancellationPolicy { get; set; } = string.Empty;
         public string? WarrantyPolicy { get; set; }
         public string BusinessHours { get; set; } = string.Empty;
-        public List<string> AcceptedPaymentMethods { get; set; } = new List<string>();
+        public List<string> AcceptedPaymentMethods { get; set; } = [];
 
         // Contact and Quote Request
         public string ContactForm { get; set; } = string.Empty;

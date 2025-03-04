@@ -1,6 +1,5 @@
 ﻿using App.Core.Helpers.Constants;
 using App.Core.Interfaces.Core;
-using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -30,13 +29,13 @@ namespace App.API.Controllers.Authentication
                 {
                     var claims = new List<Claim>()
                     {
-                        new Claim(JwtRegisteredClaimNames.Sub, configuration["Jwt:Subject"] ?? ""),
-                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim(CommonConstants.UserId, ""),
-                        new Claim(CommonConstants.DisplayName, ""),
-                        new Claim("UserName", ""),
-                        new Claim("Email", "")
+                        new(JwtRegisteredClaimNames.Sub, configuration["Jwt:Subject"] ?? ""),
+                        new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        new(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                        new(CommonConstants.UserId, ""),
+                        new(CommonConstants.DisplayName, ""),
+                        new("UserName", ""),
+                        new("Email", "")
                     };
 
 
