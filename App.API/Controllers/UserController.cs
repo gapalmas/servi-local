@@ -1,36 +1,27 @@
 ﻿using App.Core.Dto.Request.User;
-using App.Core.Entities;
 using App.Core.Interfaces.Core;
-using App.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace App.API.Controllers
 {
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    public class UserController : BaseController
+    public class UserController(IServiceFactory serviceFactory) : BaseController(serviceFactory)
     {
-        public UserController(IServiceFactory serviceFactory) : base(serviceFactory)
-        {
-        }
-
-        //public UserController(IProviderService providerService, IUserService userService) : base(providerService, userService)
-        //{
-        //}
-
         [HttpPost("register")]
         public ActionResult Create([FromBody] UserRequestDto userRequestDto)
         {
             try
             {
-                //Log.Information("This is information");
+                Log.Information("This is information");
 
                 serviceFactory.UserService.Create(userRequestDto);
 
-                //Log.Error("This is error");
+                Log.Error("This is error");
                 return Ok();
             }
             catch (Exception)

@@ -30,21 +30,5 @@ namespace App.API.Controllers
                 throw;
             }
         }
-
-        //[HttpGet]
-        //public ActionResult Get()
-        //{
-        //    Log.Information("This is information");
-        //    try
-        //    {
-        //        var response = _serviceFactory.OperationServiceProvider.GetAllAsync();
-        //        return Ok(response);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
     }
 }
