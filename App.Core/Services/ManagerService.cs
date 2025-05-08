@@ -4,16 +4,23 @@ using App.Core.Interfaces.Infrastructure;
 
 namespace App.Core.Services
 {
-    public class ManagerService(IGenericService<Provider> ServiceProvider, IUnitOfWork unitOfWork, IGenericRepository<Provider> RepositoryProvider, IGenericService<User> ServiceUser, IGenericRepository<User> RepositoryUser) : IManagerService
+    public class ManagerService : IManagerService
     {
-        protected readonly IGenericService<Provider> ServiceProvider = ServiceProvider;
-        protected readonly IGenericService<User> ServiceUser = ServiceUser;
-        protected readonly IUnitOfWork unitOfWork = unitOfWork;
-        protected readonly IGenericRepository<Provider> RepositoryProvider = RepositoryProvider;
-        protected readonly IGenericRepository<User> RepositoryUser = RepositoryUser;
+        public IGenericService<Provider> ServiceProvider { get; }
+        public IGenericService<User> ServiceUser { get; }
+        public IGenericService<INE> ServiceIne { get; }
+        private readonly IUnitOfWork UnitOfWork;
 
-        IGenericService<Provider> IManagerService.ServiceProvider => ServiceProvider ?? new RepositoryService<Provider>(RepositoryProvider);
-
-        IGenericService<User> IManagerService.ServiceUser => ServiceUser ?? new RepositoryService<User>(RepositoryUser);
+        public ManagerService(
+            IGenericService<Provider> serviceProvider,
+            IGenericService<User> serviceUser,
+            IGenericService<INE> serviceIne,
+            IUnitOfWork unitOfWork)
+        {
+            ServiceProvider = serviceProvider;
+            ServiceUser = serviceUser;
+            ServiceIne = serviceIne;
+            UnitOfWork = unitOfWork;
+        }
     }
 }

@@ -4,16 +4,26 @@ using AutoMapper;
 
 namespace App.Core.Services
 {
-    public class ServiceFactory(IProviderService providerService, IUserService userService, IManagerService managerService, IMapper mapper) : IServiceFactory
+    public class ServiceFactory : IServiceFactory
     {
-        protected readonly IManagerService managerService = managerService;
-        protected readonly IMapper mapper = mapper;
+        public IProviderService ProviderService { get; }
+        public IUserService UserService { get; }
+        public IINEProcessorService INEProcessorService { get; }
+        private readonly IManagerService ManagerService;
+        private readonly IMapper Mapper;
 
-        protected readonly IProviderService providerService = providerService;
-        protected readonly IUserService userService = userService;
-
-        public IProviderService ProviderService => providerService ?? new ProviderService(managerService, mapper);
-
-        public IUserService UserService => userService ?? new UserService(managerService, mapper);
+        public ServiceFactory(
+            IProviderService providerService,
+            IUserService userService,
+            IINEProcessorService iNEProcessorService,
+            IManagerService managerService,
+            IMapper mapper)
+        {
+            ProviderService = providerService;
+            UserService = userService;
+            INEProcessorService = iNEProcessorService;
+            ManagerService = managerService;
+            Mapper = mapper;
+        }
     }
 }

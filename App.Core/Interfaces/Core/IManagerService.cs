@@ -6,5 +6,6 @@ namespace App.Core.Interfaces.Core
     {
         IGenericService<Provider> ServiceProvider { get; }
         IGenericService<User> ServiceUser { get; }
+        IGenericService<INE> ServiceIne { get; }
     }
 }

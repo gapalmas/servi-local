@@ -6,5 +6,6 @@ namespace App.Core.Interfaces.Core
     {
         IProviderService ProviderService { get; }
         IUserService UserService { get; }
+        IINEProcessorService INEProcessorService { get; }
     }
 }
