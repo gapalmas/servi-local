@@ -1,0 +1,22 @@
+﻿using App.Core.Dto.Request.Provider;
+using App.Core.Entities;
+using App.Core.Interfaces.Core;
+using App.Core.Interfaces.Services;
+using AutoMapper;
+
+namespace App.Core.Services
+{
+    public class ProviderService(IManagerService managerService, IMapper mapper) : IProviderService
+    {
+        protected readonly IManagerService managerService = managerService;
+        public readonly IMapper mapper = mapper;
+
+        public void Create(ProviderRequestDto providerRequestDto)
+        {
+            if(providerRequestDto != null) 
+            {
+                managerService.ServiceProvider.InsertOneAsync(mapper.Map<Provider>(providerRequestDto));
+            }
+        }
+    }
+}
